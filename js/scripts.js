@@ -168,13 +168,10 @@ function primesBetween() {
       var prime = 2;
       for (var i = 2; i <= numIn; i++) {
         numList.push(i);
-
-        console.log(numList);
       }
       for (var j = 0; j <= Math.floor(Math.sqrt(numIn)); j++) {
         for (var k = j + prime; k < numIn; k += prime) {
           numList[k] = "";
-          console.log(numList);
 
         }
           prime++;
@@ -183,7 +180,6 @@ function primesBetween() {
         numList[1] = "";
       }
       for (var i = 0; i < numList.length; i++) {
-        console.log(numList);
         if ( numList[i] == "") {
           numList.splice(i,1);
           i--;
@@ -195,8 +191,6 @@ function primesBetween() {
           i--;
         }
       }
-      $("#result").text("");
-      console.log(numList);
       if (numList.length <= 1) {
         $("#result").append("<li>There are no primes between " + rangeBottom + " and " + numIn + ", upper bound not counting.</li>");
       } else if (numList.length == 2) {
@@ -222,8 +216,10 @@ $(document).ready(function() {
     event.preventDefault();
     showResults();
   });
-  // var numPrompt = parseInt(prompt("enter a number to factorialize: "));
-  // alert(factorial(numPrompt));
+  $("#fact").click(function() {
+    $("#result").text("");
+    var numPrompt = parseInt(prompt("Enter a number to factorialize: "));        $("#result").append("<li>" + numPrompt + " factorial is " + factorial(numPrompt) + "</li>");
+  });
   // var strCheck = prompt("Enter a sentence, to check if it's a palindrome.");
   // checkPalindrome(strCheck);
   $("#primer").click(function() {
@@ -231,6 +227,7 @@ $(document).ready(function() {
   });
 
   $("#bound").click(function() {
+    $("#result").text("");
     primesBetween();
   });
 });
